@@ -4,6 +4,7 @@ import pandas as pd
 nome_arquivo = 'dados.csv'
 df = pd.read_csv(nome_arquivo, sep=";", names=['A', 'B', 'C', 'D'])
 
+mask = df['B'].notna()
 df['B'] = pd.to_numeric(df['B'], errors='coerce', downcast='integer').fillna('ERROR: O valor ' + df['B'].astype(str) + ' é inválido')
 
 mask = df['D'].notnull()
