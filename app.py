@@ -1,11 +1,19 @@
 import pandas as pd
+import numpy as np
 
 
 nome_arquivo = 'dados.csv'
-df = pd.read_csv(nome_arquivo, sep=";", names=['A', 'B', 'C', 'D'])
+df = pd.read_csv(nome_arquivo, sep=";", names=['A', 'B', 'C', 'D'], skipinitialspace = True)
 
-mask = df['B'].notna()
-df['B'] = pd.to_numeric(df['B'], errors='coerce', downcast='integer').fillna('ERROR: O valor ' + df['B'].astype(str) + ' é inválido')
+# df = df.where(pd.notnull(df), None)
+# for column in df.columns:
+#     if df[column].dtype == object:
+#         df[column] = df[column].str.strip()
+
+# df['B'] = df['B'].str.strip()
+mask = df['B'].notnull()
+df.loc[mask, 'B'] = pd.to_numeric(df.loc[mask, 'B'], errors='coerce', downcast='integer').fillna('ERROR: O valor ' + df.loc[mask, 'B'].astype(str) + ' é inválido')
+
 
 mask = df['D'].notnull()
 df.loc[mask, 'D'] = pd.to_datetime(df.loc[mask, 'D'], format="%Y/%m/%d", errors="coerce").fillna("ERROR: O valor " + df['D'].astype(str) + " é inválido")
