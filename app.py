@@ -39,7 +39,7 @@ df = pd.read_csv(nome_arquivo, sep=";", names=['A', 'B', 'C', 'D'], skipinitials
 #         )
 
 
-print(df)
+print(df.head(2))
 # print(df_invalido)
 # print(tuplas_erros)
 
