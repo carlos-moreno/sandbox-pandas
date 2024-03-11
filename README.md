@@ -1,2 +1,2 @@
-# sandbox-pandas
+# Pandas
 Pandas
