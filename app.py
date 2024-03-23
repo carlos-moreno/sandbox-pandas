@@ -10,7 +10,7 @@ def preencher_vazios(elemento):
         return elemento
 
 nome_arquivo = 'dados.csv'
-df = pd.read_csv(nome_arquivo, sep=";", names=['A', 'B', 'C', 'D'], skipinitialspace = True, dtype=str, na_filter=False)
+df = pd.read_csv(nome_arquivo, sep=";", names=['A', 'B', 'C', 'D'], dtype=str, na_filter=False)
 
 df[['A', 'D']] = df[['A', 'D']].where(df[['A', 'D']] != '', 'campo nao pode ser vazio')
 df['B'] = df['B'].where(df['B'] == '', pd.to_numeric(df['B'], errors='coerce', downcast='unsigned').fillna(df['B'] + ' Valor Inválido'))
